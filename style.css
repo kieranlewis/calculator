@@ -13,11 +13,20 @@
 }
 
 #display {
+    display: flex;
     border: 2px solid red;
     flex: 1;
+    font-family: 'Orbitron', sans-serif;
 }
 
+#display p {
+    margin: auto;
+    font-size: 40px;
+}
+
+/* Buttons */
 #button-grid {
+    display: grid;
     border: 2px solid red;
     flex: 4;
 }
