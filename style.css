@@ -16,6 +16,7 @@
     display: flex;
     flex: 1;
     font-family: 'Orbitron', sans-serif;
+    height: 60px
 }
 
 #display p {
