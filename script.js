@@ -62,10 +62,20 @@ function buttonHelper() {
         case '-':
             storedOperation = '-';
             storedNumber = displayedNumber;
+            console.log(`Stored number is ${storedNumber} and stored operation is ${storedOperation}`);
+            displayArea.innerHTML = '';
             break;
         case '*':
+            storedOperation = '*';
+            storedNumber = displayedNumber;
+            console.log(`Stored number is ${storedNumber} and stored operation is ${storedOperation}`);
+            displayArea.innerHTML = '';
             break;
         case '/':
+            storedOperation = '/';
+            storedNumber = displayedNumber;
+            console.log(`Stored number is ${storedNumber} and stored operation is ${storedOperation}`);
+            displayArea.innerHTML = '';
             break;
         case 'C':
             total = 0;
@@ -80,7 +90,6 @@ function buttonHelper() {
             total = operate(storedNumber, displayedNumber, storedOperation);
             console.log(`New total is ${total}`);
             displayedNumber = total;
-
             displayArea.innerHTML = displayedNumber;
             break;
         default:
