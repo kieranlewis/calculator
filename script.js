@@ -60,6 +60,8 @@ function buttonHelper() {
             displayArea.innerHTML = '';
             break;
         case '-':
+            storedOperation = '-';
+            storedNumber = displayedNumber;
             break;
         case '*':
             break;
@@ -77,7 +79,9 @@ function buttonHelper() {
             console.log(`Operating on ${storedNumber} and ${displayedNumber} with ${storedOperation}`);
             total = operate(storedNumber, displayedNumber, storedOperation);
             console.log(`New total is ${total}`);
-            displayArea.innerHTML = total;
+            displayedNumber = total;
+
+            displayArea.innerHTML = displayedNumber;
             break;
         default:
             displayArea.innerHTML += this.textContent;
