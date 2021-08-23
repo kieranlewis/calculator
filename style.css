@@ -14,7 +14,6 @@
 
 #display {
     display: flex;
-    border: 2px solid red;
     flex: 1;
     font-family: 'Orbitron', sans-serif;
 }
@@ -27,6 +26,22 @@
 /* Buttons */
 #button-grid {
     display: grid;
-    border: 2px solid red;
     flex: 4;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#button-grid button {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 30px;
+}
+
+#display-buttons {
+    display: flex;
+}
+
+#display-buttons button {
+    flex: 1;
+    height: 60px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 30px;
 }
