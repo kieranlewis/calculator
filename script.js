@@ -1,6 +1,7 @@
 let storedNumber = 0;
 let displayedNumber = 0;
 let storedOperation = '';
+let total = 0;
 
 //calculator functions
 function add(a,b) {
@@ -16,10 +17,12 @@ function multiply(a,b) {
 }
 
 function divide(a,b) {
+    if(b == 0) return 'ERROR'
     return parseInt(a) / parseInt(b);
 }
 
 function operate(a, b, operation) {
+    console.log(`${a} ${operation} ${b} = `);
     switch (operation) {
         case '+': 
             return add(a,b);
@@ -34,6 +37,13 @@ function operate(a, b, operation) {
             return divide(a,b);
             break;
     } 
+}
+
+function logNumbers() {
+    console.log(`Stored Number is ${storedNumber}`);
+    console.log(`Displayed Number is ${displayedNumber}`);
+    console.log(`Stored Operation is ${storedOperation}`);
+    console.log(`Total is ${total}`);
 }
 
 //DOM Manipulation
@@ -77,6 +87,7 @@ function buttonHelper() {
             displayArea.innerHTML = '';
             break;
         case 'DEL':
+            displayArea.innerHTML = displayArea.innerHTML.slice(0, -1);
             break;
         case '=':
             clearActive();
