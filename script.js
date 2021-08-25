@@ -10,20 +10,20 @@ let previousOperand = '';
 let currentOperation = undefined;
 
 function add(a,b) {
-    return parseInt(a) + parseInt(b);
+    return parseFloat(a) + parseFloat(b);
 }
 
 function subtract(a,b) {
-    return parseInt(a) - parseInt(b);
+    return parseFloat(a) - parseFloat(b);
 }
 
 function multiply(a,b) {
-    return parseInt(a) * parseInt(b);
+    return parseFloat(a) * parseFloat(b);
 }
 
 function divide(a,b) {
     if(b == 0) return 'ERROR'
-    return parseInt(a) / parseInt(b);
+    return parseFloat(a) / parseFloat(b);
 }
 
 function operate(a, b, operation) {
@@ -85,7 +85,6 @@ clearButton.addEventListener('click', () => {
 
 equalsButton.addEventListener('click', () => {
     currentOperand = operate(previousOperand, currentOperand, currentOperation);
-    previousOperand = currentOperand;
     currentOperandTextElement.innerText = currentOperand;
-    currentOperand = '';
+    previousOperand = '';
 });
