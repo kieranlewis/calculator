@@ -59,30 +59,33 @@ function buttonHelper() {
         case '+':
             document.getElementById('btn-plus').classList.add('active');
             storedOperation = '+';
-            storedNumber = displayedNumber;
-            console.log(`Stored number is ${storedNumber} and stored operation is ${storedOperation}`);
+            console.log(`${storedNumber}, ${displayedNumber}`);
+            total = add(storedNumber, displayedNumber);
+            storedNumber = total;
             break;
         case '-':
             document.getElementById('btn-sub').classList.add('active');
             storedOperation = '-';
-            storedNumber = displayedNumber;
-            console.log(`Stored number is ${storedNumber} and stored operation is ${storedOperation}`);
+            total = subtract(storedNumber, displayedNumber);
+            storedNumber = total;
+            console.log(`New total is ${total}`);
             break;
         case '*':
             document.getElementById('btn-mult').classList.add('active');
             storedOperation = '*';
-            storedNumber = displayedNumber;
-            console.log(`Stored number is ${storedNumber} and stored operation is ${storedOperation}`);
+            total = multiply(storedNumber, displayedNumber);
+            storedNumber = total;
             break;
         case '/':
             document.getElementById('btn-div').classList.add('active');
             storedOperation = '/';
-            storedNumber = displayedNumber;
-            console.log(`Stored number is ${storedNumber} and stored operation is ${storedOperation}`);
+            total = divide(storedNumber, displayedNumber);
+            storedNumber = total;
             break;
         case 'C':
             total = 0;
-            currentNumber = 0;
+            storedNumber = 0;
+            displayedNumber = 0;
             currentOperation = '';
             displayArea.innerHTML = '';
             break;
