@@ -27,7 +27,7 @@ body {
 
 #display div {
     margin: auto;
-    font-size: 40px;
+    font-size: 32px;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #DBDBDB;

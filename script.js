@@ -63,8 +63,9 @@ function chooseOperation(operation) {
     }
     currentOperation = operation;
     previousOperand = currentOperand;
+    currentOperandTextElement.innerText = currentOperand;
     currentOperand = '';
-    currentOperandTextElement.innerText = '';
+    //currentOperandTextElement.innerText = '';
 }
 
 function backspace() {
