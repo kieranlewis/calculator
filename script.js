@@ -27,6 +27,7 @@ function divide(a,b) {
 }
 
 function operate(a, b, operation) {
+    if(operation === undefined) return 'ERROR';
     switch (operation) {
         case '+': 
             return add(a,b);
