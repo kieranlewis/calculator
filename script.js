@@ -84,9 +84,7 @@ operationButtons.forEach(button => {
     });
 })
 
-clearButton.addEventListener('click', () => {
-    clear();
-});
+clearButton.addEventListener('click', clear);
 
 equalsButton.addEventListener('click', () => {
     currentOperand = operate(previousOperand, currentOperand, currentOperation);

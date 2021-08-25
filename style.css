@@ -1,3 +1,7 @@
+body {
+    background-color: #85C7F2;
+}
+
 .container {
     display: flex;
     height: 100vh;
@@ -8,14 +12,16 @@
     flex-direction: column;
     height: 400px;
     width: 250px;
-    border: 2px solid black;
+    border: 1px solid black;
     margin: auto;
 }
 
 #display {
+    background-color: #4C4C4C;
     display: flex;
     flex: 1;
     font-family: 'Orbitron', sans-serif;
+    border: 1px solid black;
     height: 60px
 }
 
@@ -24,6 +30,16 @@
     font-size: 40px;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #DBDBDB;
+}
+
+button {
+    background-color: #636363;
+    color: #DBDBDB;
+}
+
+button:hover {
+    opacity: 0.9;
 }
 
 /* Buttons */
