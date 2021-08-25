@@ -10,20 +10,20 @@ let previousOperand = '';
 let currentOperation = undefined;
 
 function add(a,b) {
-    return parseFloat(a) + parseFloat(b);
+    return Math.round((parseFloat(a) + parseFloat(b)) * 100) / 100;
 }
 
 function subtract(a,b) {
-    return parseFloat(a) - parseFloat(b);
+    return Math.round((parseFloat(a) - parseFloat(b)) * 100) / 100;
 }
 
 function multiply(a,b) {
-    return parseFloat(a) * parseFloat(b);
+    return Math.round((parseFloat(a) * parseFloat(b)) * 100) / 100;
 }
 
 function divide(a,b) {
     if(b == 0) return 'ERROR'
-    return parseFloat(a) / parseFloat(b);
+    return Math.round((parseFloat(a) / parseFloat(b)) * 100) / 100;
 }
 
 function operate(a, b, operation) {
