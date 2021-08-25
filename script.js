@@ -22,7 +22,7 @@ function multiply(a,b) {
 }
 
 function divide(a,b) {
-    if(b == 0) return 'ERROR'
+    if(b == 0) return 'ERROR';
     return Math.round((parseFloat(a) / parseFloat(b)) * 100) / 100;
 }
 
@@ -67,6 +67,11 @@ function chooseOperation(operation) {
     currentOperandTextElement.innerText = '';
 }
 
+function backspace() {
+    currentOperandTextElement.innerText = currentOperandTextElement.innerText.slice(0, -1);
+    currentOperand = currentOperandTextElement.innerText;
+}
+
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         appendNumber(button.innerText);
@@ -88,3 +93,5 @@ equalsButton.addEventListener('click', () => {
     currentOperandTextElement.innerText = currentOperand;
     previousOperand = '';
 });
+
+deleteButton.addEventListener('click', backspace);
