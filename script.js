@@ -1,9 +1,14 @@
-let storedNumber = 0;
-let displayedNumber = 0;
-let storedOperation = '';
-let total = 0;
+const numberButtons = document.querySelectorAll('[data-number]');
+const operationButtons = document.querySelectorAll('[data-operation]');
+const equalsButton = document.querySelector('[data-equals]');
+const clearButton = document.querySelector('#btn-clr');
+const deleteButton = document.querySelector('#btn-del');
+const currentOperandTextElement = document.querySelector('[data-current-operand]');
 
-//calculator functions
+let currentOperand = '';
+let previousOperand = '';
+let currentOperation = undefined;
+
 function add(a,b) {
     return parseInt(a) + parseInt(b);
 }
@@ -22,7 +27,6 @@ function divide(a,b) {
 }
 
 function operate(a, b, operation) {
-    console.log(`${a} ${operation} ${b} = `);
     switch (operation) {
         case '+': 
             return add(a,b);
@@ -39,79 +43,48 @@ function operate(a, b, operation) {
     } 
 }
 
-function logNumbers() {
-    console.log(`Stored Number is ${storedNumber}`);
-    console.log(`Displayed Number is ${displayedNumber}`);
-    console.log(`Stored Operation is ${storedOperation}`);
-    console.log(`Total is ${total}`);
+function appendNumber(number) {
+    currentOperandTextElement.innerText = currentOperand.toString() + number.toString();
+    currentOperand = currentOperandTextElement.innerText;
 }
 
-//DOM Manipulation
-const display = document.querySelector('#display');
-const calcButtons = [...(document.querySelectorAll('button'))];
-console.log(calcButtons);
+function clear() {
+    currentOperand = '';
+    previousOperand = '';
+    currentOperation = undefined;
+    currentOperandTextElement.innerText = '';
+}
 
-calcButtons.forEach(button => button.addEventListener('click', buttonHelper));
-
-function buttonHelper() {
-    const displayArea = document.querySelector('#display p');
-    switch (this.textContent) {
-        case '+':
-            document.getElementById('btn-plus').classList.add('active');
-            storedOperation = '+';
-            console.log(`${storedNumber}, ${displayedNumber}`);
-            total = add(storedNumber, displayedNumber);
-            storedNumber = total;
-            break;
-        case '-':
-            document.getElementById('btn-sub').classList.add('active');
-            storedOperation = '-';
-            total = subtract(storedNumber, displayedNumber);
-            storedNumber = total;
-            console.log(`New total is ${total}`);
-            break;
-        case '*':
-            document.getElementById('btn-mult').classList.add('active');
-            storedOperation = '*';
-            total = multiply(storedNumber, displayedNumber);
-            storedNumber = total;
-            break;
-        case '/':
-            document.getElementById('btn-div').classList.add('active');
-            storedOperation = '/';
-            total = divide(storedNumber, displayedNumber);
-            storedNumber = total;
-            break;
-        case 'C':
-            total = 0;
-            storedNumber = 0;
-            displayedNumber = 0;
-            currentOperation = '';
-            displayArea.innerHTML = '';
-            break;
-        case 'DEL':
-            displayArea.innerHTML = displayArea.innerHTML.slice(0, -1);
-            break;
-        case '=':
-            clearActive();
-            console.log(`Operating on ${storedNumber} and ${displayedNumber} with ${storedOperation}`);
-            displayedNumber = operate(storedNumber, displayedNumber, storedOperation);
-            displayArea.innerHTML = displayedNumber;
-            break;
-        default:
-            if(document.getElementsByClassName('active').length != 0) {
-                clearActive();
-                displayArea.innerHTML = this.textContent;
-                displayedNumber = displayArea.innerHTML;        
-            } else {
-                displayArea.innerHTML += this.textContent;
-                displayedNumber = displayArea.innerHTML;  
-            }        
+function chooseOperation(operation) {
+    if(currentOperand === '') return;
+    if(previousOperand !== '') {
+        currentOperand = operate(previousOperand, currentOperand, currentOperation);
     }
+    currentOperation = operation;
+    previousOperand = currentOperand;
+    currentOperand = '';
+    currentOperandTextElement.innerText = '';
 }
 
-function clearActive() {
-    calcButtons.forEach(button => {
-        button.classList.remove('active');
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        appendNumber(button.innerText);
     });
-}
+})
+
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        chooseOperation(button.innerText);
+    });
+})
+
+clearButton.addEventListener('click', () => {
+    clear();
+});
+
+equalsButton.addEventListener('click', () => {
+    currentOperand = operate(previousOperand, currentOperand, currentOperation);
+    previousOperand = currentOperand;
+    currentOperandTextElement.innerText = currentOperand;
+    currentOperand = '';
+});
