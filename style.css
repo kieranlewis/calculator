@@ -22,6 +22,8 @@
 #display div {
     margin: auto;
     font-size: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Buttons */
