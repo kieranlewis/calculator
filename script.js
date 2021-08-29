@@ -73,6 +73,12 @@ function backspace() {
     currentOperand = currentOperandTextElement.innerText;
 }
 
+function equals() {
+    currentOperand = operate(previousOperand, currentOperand, currentOperation);
+    currentOperandTextElement.innerText = currentOperand;
+    previousOperand = '';
+}
+
 function keyboardHelper(e) {
     console.log(e.key);
     switch (e.key) {
@@ -92,14 +98,17 @@ function keyboardHelper(e) {
         case '-':
         case '*':
         case '/':
-            console.log(`You pressed ${e.key}`);
             chooseOperation(e.key);
             break;
         case '=':
         case 'Enter':
-            currentOperand = operate(previousOperand, currentOperand, currentOperation);
-            currentOperandTextElement.innerText = currentOperand;
-            previousOperand = '';
+            equals();
+            break;
+        case 'Backspace':
+            backspace();
+            break;
+        case 'c':
+            clear();
             break;
         default:
     }
@@ -119,11 +128,7 @@ operationButtons.forEach(button => {
 
 clearButton.addEventListener('click', clear);
 
-equalsButton.addEventListener('click', () => {
-    currentOperand = operate(previousOperand, currentOperand, currentOperation);
-    currentOperandTextElement.innerText = currentOperand;
-    previousOperand = '';
-});
+equalsButton.addEventListener('click', equals);
 
 deleteButton.addEventListener('click', backspace);
 
