@@ -77,6 +77,7 @@ function keyboardHelper(e) {
     console.log(e.key);
     switch (e.key) {
         case '1':
+        case '2':
         case '3':
         case '4':
         case '5':
@@ -85,9 +86,22 @@ function keyboardHelper(e) {
         case '8':
         case '9':
         case '0':
-        default:
             appendNumber(e.key);
             break;
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+            console.log(`You pressed ${e.key}`);
+            chooseOperation(e.key);
+            break;
+        case '=':
+        case 'Enter':
+            currentOperand = operate(previousOperand, currentOperand, currentOperation);
+            currentOperandTextElement.innerText = currentOperand;
+            previousOperand = '';
+            break;
+        default:
     }
 }
 
