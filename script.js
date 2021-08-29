@@ -109,6 +109,7 @@ function keyboardHelper(e) {
             break;
         case '=':
         case 'Enter':
+            e.preventDefault();
             equals();
             break;
         case 'Backspace':
