@@ -73,6 +73,24 @@ function backspace() {
     currentOperand = currentOperandTextElement.innerText;
 }
 
+function keyboardHelper(e) {
+    console.log(e.key);
+    switch (e.key) {
+        case '1':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '0':
+        default:
+            appendNumber(e.key);
+            break;
+    }
+}
+
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         appendNumber(button.innerText);
@@ -94,3 +112,5 @@ equalsButton.addEventListener('click', () => {
 });
 
 deleteButton.addEventListener('click', backspace);
+
+document.addEventListener('keydown', keyboardHelper);
