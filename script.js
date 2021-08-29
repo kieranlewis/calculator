@@ -8,6 +8,7 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 let currentOperand = '';
 let previousOperand = '';
 let currentOperation = undefined;
+let equalsFlag = false;
 
 function add(a,b) {
     return Math.round((parseFloat(a) + parseFloat(b)) * 1000) / 1000;
@@ -45,6 +46,9 @@ function operate(a, b, operation) {
 }
 
 function appendNumber(number) {
+    if(equalsFlag) {
+        return;
+    }
     currentOperandTextElement.innerText = currentOperand.toString() + number.toString();
     currentOperand = currentOperandTextElement.innerText;
 }
@@ -54,6 +58,7 @@ function clear() {
     previousOperand = '';
     currentOperation = undefined;
     currentOperandTextElement.innerText = '';
+    equalsFlag = false;
 }
 
 function chooseOperation(operation) {
@@ -65,7 +70,7 @@ function chooseOperation(operation) {
     previousOperand = currentOperand;
     currentOperandTextElement.innerText = currentOperand;
     currentOperand = '';
-    //currentOperandTextElement.innerText = '';
+    equalsFlag = false;
 }
 
 function backspace() {
@@ -77,6 +82,7 @@ function equals() {
     currentOperand = operate(previousOperand, currentOperand, currentOperation);
     currentOperandTextElement.innerText = currentOperand;
     previousOperand = '';
+    equalsFlag = true;
 }
 
 function keyboardHelper(e) {
@@ -92,6 +98,7 @@ function keyboardHelper(e) {
         case '8':
         case '9':
         case '0':
+        case '.':
             appendNumber(e.key);
             break;
         case '+':
